@@ -15,9 +15,10 @@ def root():
 def upl_file():
     if request.method == 'POST':
         f = request.files['file']
-        f.save(secure_filename(f.filename))
-        with open(secure_filename(f.filename)) as fil:
-            return fil.read()
+        arr = []
+        for line in f:
+            arr.append(line)
+        return '\n'.join(arr)
     else:
         with open('static/upload.html') as fi:
             contents = fi.read()
