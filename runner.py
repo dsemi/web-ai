@@ -14,7 +14,7 @@ class Runner:
         # Command line params
         # game
         # language file-to-run
-        
+
         self.process1 = 'java -jar bridges/java/sauce.jar'
         self.process2 = 'java -jar bridges/java/sauce.jar'
         self.processes = []
