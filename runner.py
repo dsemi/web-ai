@@ -40,7 +40,7 @@ class Runner:
             print
             player = -player
         for t in self.processes.values():
-            t.stdin.write('exit')
+            t.stdin.write('exit\n')
             t.stdin.flush()
 
         print "There's a winner: " + str(self.game.winner())
