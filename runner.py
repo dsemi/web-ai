@@ -2,16 +2,22 @@
 
 import os, sys, time
 import json, shlex
-from tictactoe import TicTacToe
+from games.tictactoe import TicTacToe
 from subprocess import Popen, PIPE
-
 
 class Runner:
     
     def __init__(self):
-        self.game = TicTacToe()        
-        self.process1 = 'java -jar sauce.jar'
-        self.process2 = 'java -jar sauce.jar'
+        self.game = TicTacToe()
+        # Should be json
+        args = ' '.join(sys.argv[1:])
+        # Command line params
+        # game
+        # number of players
+        # language file-to-run
+        
+        self.process1 = 'java -jar bridges/java/sauce.jar'
+        self.process2 = 'java -jar bridges/java/sauce.jar'
         self.processes = {}
 
     def send_data(self, index, data):
@@ -37,7 +43,7 @@ class Runner:
             t.stdin.write('exit')
             t.stdin.flush()
 
-        print "yo bitch, there's a winner: " + str(self.game.winner())
+        print "There's a winner: " + str(self.game.winner())
         
 
 
