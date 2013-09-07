@@ -1,6 +1,6 @@
 #!/usr/bin/python2
 
-import os, sys
+import os, sys, time
 import json, shlex
 from tictactoe import TicTacToe
 from subprocess import Popen, PIPE
@@ -10,8 +10,8 @@ class Runner:
     
     def __init__(self):
         self.game = TicTacToe()        
-        self.process1 = ''
-        self.process2 = ''
+        self.process1 = 'java -jar sauce.jar'
+        self.process2 = 'java -jar sauce.jar'
         self.processes = {}
 
     def send_data(self, index, data):
@@ -30,6 +30,8 @@ class Runner:
         while not self.game.winner():
             self.send_data(player, game.get_state())
             self.game.update(self.get_data(player), player)
+            self.game.print_board()
+            time.sleep(2)
             player = -player
 
         print "yo bitch, there's a winner: "+self.game.winner()
