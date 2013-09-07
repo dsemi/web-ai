@@ -12,6 +12,10 @@ define('lib.utils.Ajax', {
 	method : 'POST',
 
 	url : '',
+	
+	contentType : '',
+	
+	acceptType : '',
 
 	onSuccess : function(response, status) {
 		console.log('Connection SUCCESS: ' + status);
@@ -58,9 +62,9 @@ define('lib.utils.Ajax', {
 		};
 
 		request.open(this.method, this.url);
-		request.setRequestHeader('Content-Type', 'application/json');
-		request.setRequestHeader('Accept', 'application/json');
-		request.send(JSON.stringify(data));
+		request.setRequestHeader('Content-Type', this.contentType);
+		request.setRequestHeader('Accept', this.acceptType);
+		request.send(data);
 
 		return request;
 	},
