@@ -1,3 +1,5 @@
+package com.ai.api;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -15,9 +17,9 @@ public class API {
 	private static Map<String, Object> state;
 	private static double time;
 
-	private static boolean aiIsRunning = false;
 	private static Thread aiThread;
 
+	@SuppressWarnings("unchecked")
 	public static void main(String args[]) {
 		ai = new MyAI();
 
