@@ -1,18 +1,20 @@
 process.on('message', function(state) {
 	process.send({
-		move : getRandom(state.board)
+		move : getRandom(state.board) || 0
 	});
 });
 
 function getValid(board) {
 	var valid = [], i = 0;
-	board.foreach(function(space) {
+	board.forEach(function(space) {
 		if (space === 0) {
 			valid.push(i);
 		}
 		
 		i++;
 	});
+	
+	return valid;
 }
 
 function getRandom(board) {
