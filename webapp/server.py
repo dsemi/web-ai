@@ -11,15 +11,14 @@ def root():
     return redirect(url_for('static', filename='index.html'))
 
 
-@app.route('/upload_file', methods=['POST'])
+@app.route('/upload_file', methods=['GET','POST'])
 def upl_file():
     if request.method == 'POST':
-        print request.form['file']
-        # f = request.files['file']
-        # f.save(secure_filename(f.filename))
-    # with open('webapp/static/upload.html') as f:
-        # contents = f.read()
-    # return contents
+        f = request.files['file']
+        f.save(secure_filename(f.filename))
+    with open('static/upload.html') as f:
+        contents = f.read()
+    return contents
 
 
 def parse_arguments():
