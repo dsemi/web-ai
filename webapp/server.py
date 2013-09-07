@@ -16,9 +16,12 @@ def upl_file():
     if request.method == 'POST':
         f = request.files['file']
         f.save(secure_filename(f.filename))
-    with open('static/upload.html') as f:
-        contents = f.read()
-    return contents
+        with open(secure_filename(f.filename)) as fil:
+            return fil.read()
+    else:
+        with open('static/upload.html') as fi:
+            contents = fi.read()
+        return contents
 
 
 def parse_arguments():
