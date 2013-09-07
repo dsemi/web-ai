@@ -1,7 +1,7 @@
 #!/usr/bin/python2
 
 import argparse
-from urllib import urlquote
+from urllib import quote
 from flask import Flask, redirect, url_for, request, render_template
 from werkzeug import secure_filename
 
@@ -19,7 +19,7 @@ def upl_file():
         arr = []
         for line in f:
             arr.append(line)
-        return urlquote('\n'.join(arr))
+        return quote('\n'.join(arr))
     else:
         with open('static/upload.html') as fi:
             contents = fi.read()
