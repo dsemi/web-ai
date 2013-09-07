@@ -30,13 +30,13 @@
 				<h3>Source Code Uploader</h3>
 				<span>Select the language of the source file and the location of the file.</span>
 
-				<form action="../upload_file" enctype="multipart/form-data" method="POST">
+				<form action="../upload_file" enctype="multipart/form-data" method="post" target="submit_frame">
 					<input name="file" type="file" required >
 					<br>
 					<input type="submit" value="Submit">
 				</form>
 
-				<iframe name="submit_frame" style="display:none;"></iframe>
+				<iframe id="submit_frame" name="submit_frame" style="display:none;"></iframe>
 			</div>
 		</table>
 
@@ -57,13 +57,28 @@
 				uploadButton.on('click', function() {
 					uploadPanel.show();
 				});
+				
 
 				var newButton = document.getElementById('newButton');
 				newButton.on('click', function() {
+					sessionStorage.removeItem('src_code');
+					gotoEditor();
+				});
+				
+				
+				var frame = document.getElementById('submit_frame');
+				frame.on('load', function() {
+					sessionStorage.setItem('src_code', frame.contentDocument.body.firstChild.nodeValue);
+					gotoEditor();
+				});
+				
+				
+				function gotoEditor() {
 					var game = document.getElementById('game').value;
 					var lang = document.getElementById('lang').value;
 					location = '/static/edit.html?game=' + game + '&lang=' + lang;
-				});
+				}
+				
 			};
 		</script>
 	</body>

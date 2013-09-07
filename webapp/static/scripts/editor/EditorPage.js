@@ -13,6 +13,7 @@
 			this.callSuper();
 
 			var params = App.getParams();
+			var srcCode = sessionStorage.getItem('src_code');
 
 			var gameTitle = new Element('h1', {
 				innerHTML : params.game + ' AI'
@@ -31,8 +32,12 @@
 				}
 			});
 
-			var ace = new Ace(params.lang.toLowerCase());
-
+			var ace = new Ace(params.lang.toLowerCase(), function() {
+				if (srcCode) {
+					ace.getEditor().setValue(decodeURIComponent(srcCode));
+				}
+			});
+			
 			var submit = new Element('button', {
 				innerHTML : 'Submit'
 			});
