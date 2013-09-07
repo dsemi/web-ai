@@ -19,7 +19,7 @@ def upl_file():
         arr = []
         for line in f:
             arr.append(line)
-        return quote('\n'.join(arr))
+        return quote(''.join(arr))
     else:
         with open('static/upload.html') as fi:
             contents = fi.read()
