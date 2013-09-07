@@ -10,7 +10,8 @@ class Runner:
     def __init__(self):
         self.game = TicTacToe()
         # Should be json
-        # args = json.loads(' '.join(sys.argv[1:]))
+        if len(sys.argv) > 1:
+            args = json.loads(' '.join(sys.argv[1:]))
         # Command line params
         # game
         # language file-to-run
