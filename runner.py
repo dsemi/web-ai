@@ -8,28 +8,35 @@ from subprocess import Popen, PIPE
 
 class Runner:
     
-    def __init__(self, process_string, p1, p2):
-        self.process_string = process_string
-        self.game_type = sys.argv[1]
-        self.process = None
-        self.players = [p1,p2]
+    def __init__(self):
+        self.game = TicTacToe()        
+        self.process1 = ''
+        self.process2 = ''
+        self.processes = {}
 
-    def send_data(self, data):
-        self.process.stdin.write(data)
-        self.process.stdin.flush()
+    def send_data(self, index, data):
+        self.processes[index].stdin.write(json.dumps(data)+'\n') # possibly need to convert to string
+        self.processes[index].stdin.flush()
 
-    def get_data(self)
-        return json.loads(self.process.stdout.readline())
-
-    def update(self):
-        pass
+    def get_data(self, index)
+        return json.loads(self.processes[index].stdout.readline())
 
     def run(self):
-        self.process = Popen(shlex.split(self.process_string), stdin=PIPE, stdout=PIPE)
+        # if elses for which language is running
+        self.processes[1]  = (Popen(shlex(self.process1), stdout=PIPE, stdin=PIPE))
+        self.processes[-1] = (Popen(shlex(self.process2), stdout=PIPE, stdin=PIPE))
+        
+        player = 1
+        while not self.game.winner():
+            self.send_data(player, game.get_state())
+            self.game.update(self.get_data(player), player)
+            player = -player
+
+        print "yo bitch, there's a winner: "+self.game.winner()
         
 
 
 
 if __name__ == '__main__':
-    runner = Runner("xxxxxx", "player1", "player2")
+    runner = Runner()
     runner.run()
