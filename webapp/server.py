@@ -16,10 +16,7 @@ def root():
 def upl_file():
     if request.method == 'POST':
         f = request.files['file']
-        arr = []
-        for line in f:
-            arr.append(line)
-        return quote(''.join(arr))
+        return quote(''.join([line for line in f]))
     else:
         with open('static/upload.html') as fi:
             contents = fi.read()
