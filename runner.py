@@ -23,16 +23,19 @@ class Runner:
 
     def run(self):
         # if elses for which language is running
-        self.processes[1]  = (Popen(shlex(self.process1), stdout=PIPE, stdin=PIPE))
-        self.processes[-1] = (Popen(shlex(self.process2), stdout=PIPE, stdin=PIPE))
+        self.processes[1]  = Popen(shlex.split(self.process1), stdout=PIPE, stdin=PIPE)
+        self.processes[-1] = Popen(shlex.split(self.process2), stdout=PIPE, stdin=PIPE)
         
         player = 1
         while not self.game.winner():
-            self.send_data(player, game.get_state())
+            self.send_data(player, self.game.get_state())
             self.game.update(self.get_data(player), player)
             self.game.print_board()
-            time.sleep(2)
+            print
             player = -player
+        for t in self.processes.values():
+            t.stdin.write('exit')
+            t.stdin.flush()
 
         print "yo bitch, there's a winner: " + str(self.game.winner())
         
