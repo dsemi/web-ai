@@ -2,4 +2,6 @@
 
 
 class Game:
-    pass
+
+    def __init__: # This is the constructor
+        pass
