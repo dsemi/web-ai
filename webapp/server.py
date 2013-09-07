@@ -2,7 +2,7 @@
 
 import argparse
 from urllib import quote
-from flask import Flask, redirect, url_for, request, render_template
+from flask import Flask, redirect, url_for, request
 from werkzeug import secure_filename
 
 app = Flask(__name__)
@@ -22,6 +22,14 @@ def upl_file():
             contents = fi.read()
         return contents
 
+    
+@app.route('/submit_code', methods=['POST'])
+def subcode():
+    code  = request.form.get('code')
+    email = request.form.get('email')
+    game  = request.form.get('game')
+    lang  = request.form.get('lang')
+    # Run the code 
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
