@@ -10,7 +10,7 @@ def root():
     return redirect(url_for('static', filename='index.html'))
 
 
-@app.route('/static/upload_file', methods=['POST'])
+@app.route('/upload_file', methods=['POST'])
 def upl_file():
     return request.form.get('file')
 
