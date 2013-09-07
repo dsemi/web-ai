@@ -38,9 +38,6 @@ class TicTacToe:
     # Just for us to see output
     def print_board(self):
         brd = self.board[:]
-        for k in brd:
-            if brd[k] == -1:
-                brd[k] = 2
         print ('   \033[4m')+' '.join("123")+'\033[0m'
         for i in range(3):
             print '%d|' % (i+1),
