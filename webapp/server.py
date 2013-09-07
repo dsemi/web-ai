@@ -12,7 +12,7 @@ def root():
 
 @app.route('/upload_file', methods=['POST'])
 def upl_file():
-    return request.form.get('file')
+    print request.form.get('file')
 
 
 def parse_arguments():
