@@ -1,7 +1,8 @@
 #!/usr/bin/python2
 
 import argparse
-from flask import Flask, redirect, url_for, request
+from flask import Flask, redirect, url_for, request, render_template
+from werkzeug import secure_filename
 
 app = Flask(__name__)
 
@@ -12,7 +13,13 @@ def root():
 
 @app.route('/upload_file', methods=['POST'])
 def upl_file():
-    print request.form.get('file')
+    if request.method == 'POST':
+        print request.form['file']
+        # f = request.files['file']
+        # f.save(secure_filename(f.filename))
+    # with open('webapp/static/upload.html') as f:
+        # contents = f.read()
+    # return contents
 
 
 def parse_arguments():

@@ -48,7 +48,6 @@ class Runner:
             t.stdin.flush()
 
         print "There's a winner: " + str(self.game.winner())
-        
 
 
 
