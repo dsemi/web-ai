@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<script src="../src/App.js"></script>
+
+		<script>
+			(function() {
+				using('lib', '../src/');
+				using('synpro', 'src/');
+
+				var Navigator = include('lib.ui.Navigator');
+				var Home = include('synpro.HomeView');
+				var PlotView = include('synpro.PlotView');
+				var AceView = include('synpro.AceView');
+				var ThreadView = include('synpro.ThreadView');
+
+				App.onready = function() {
+					App.setTitle('Framework - Playground');
+					
+					App.setNavigator(new Navigator());
+					App.navigator.addRoute('home', Home);
+					App.navigator.addRoute('scatterplot', PlotView);
+					App.navigator.addRoute('ace', AceView);
+					App.navigator.addRoute('thread', ThreadView);
+					
+					App.navigator.goTo('home');
+				}
+				
+			})();
+		</script>
+	</body>
+</html>
