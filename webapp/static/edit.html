@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 
 <html>
-	<head>
-		<script type="application/javascript" src="javascript-framework/src/App.js" ></script>
-	</head>
-
 	<body>
+		<script type="application/javascript" src="javascript-framework/src/App.js" ></script>
+
 		<script type="application/javascript">
 			using('lib', 'javascript-framework/src/');
 			using('ai', 'scripts/');
 
+			var EditorPage = include('ai.editor.EditorPage');
+
 			App.onready = function() {
 				App.setTitle('Web AI: Editor');
 
+				var page = new EditorPage();
+				App.setContainer(page);
 			};
 		</script>
 	</body>

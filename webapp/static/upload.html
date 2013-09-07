@@ -28,7 +28,7 @@
 				<h3>Source Code Uploader</h3>
 				<span>Select the language of the source file and the location of the file.</span>
 
-				<form>
+				<form action="../upload_file" enctype="multipart/form-data" method="post">
 					<!-- Source Code Language -->
 					<label>
 						<select>
@@ -37,7 +37,7 @@
 						</select> Source Langauage</label>
 
 					<br>
-					<input type="file" required >
+					<input name="file" type="file" required >
 					<br>
 					<input type="submit" value="Submit">
 				</form>
