@@ -18,7 +18,7 @@ class Runner:
         self.processes[index].stdin.write(json.dumps(data)+'\n') # possibly need to convert to string
         self.processes[index].stdin.flush()
 
-    def get_data(self, index)
+    def get_data(self, index):
         return json.loads(self.processes[index].stdout.readline())
 
     def run(self):
@@ -34,7 +34,7 @@ class Runner:
             time.sleep(2)
             player = -player
 
-        print "yo bitch, there's a winner: "+self.game.winner()
+        print "yo bitch, there's a winner: " + str(self.game.winner())
         
 
 
