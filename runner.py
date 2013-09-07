@@ -34,8 +34,11 @@ class Runner:
     
         player_index = 0
         while not self.game.winner():
-            self.send_data(player_index, self.game.get_state())
-            self.game.update(self.get_data(player_index), player_index+1)
+            if self.game.available_moves(player_index+1):
+                self.send_data(player_index, self.game.get_state())
+                self.game.update(self.get_data(player_index), player_index+1)
+            else:
+                print "Player %d cannot move" % player_index+1
             self.game.print_board()
             print
             player_index = (player_index+1) % len(self.processes) 

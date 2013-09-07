@@ -36,10 +36,10 @@ p2_num = -1
 class Othello:
     def __init__(self):
         self.brd =  dict((s, 0) for s in squares)
-        self.brd['D4'] = -1
+        self.brd['D4'] = 2
         self.brd['D5'] = 1
         self.brd['E4'] = 1
-        self.brd['E5'] = -1
+        self.brd['E5'] = 2
 
 
     def available_moves(self, player):
@@ -55,7 +55,7 @@ class Othello:
                         checked[move][i] = 1
                         checked[move][(i+4) % 8] = 1
                         continue
-                    elif self.brd[move] == -player:
+                    elif self.brd[move] != 0:
                         continue
                     elif self.brd[move] == 0:
                         if j > 0 and self.brd[di[j-1]] != player:
@@ -104,9 +104,6 @@ class Othello:
 
     def print_board(self):
         board = self.brd.copy()
-        for k in board:
-            if board[k] == -1:
-                board[k] = 2
         print ('   \033[4m')+' '.join(cols)+'\033[0m'
         for r in rows:
             print '%s|' % r,
