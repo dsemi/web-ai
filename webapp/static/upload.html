@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<script type="application/javascript" src="javascript-framework/src/App.js" ></script>
-	</head>
 	<body>
 		<table>
 			<tr>
-				<select>
+				<select id="game">
 					<option>Othello</option>
 					<option>Tic Tac Toe</option>
 					<option>Asteroids</option>
+				</select>
+				<select id="lang">
+					<option>JavaScript</option>
+					<option>Java</option>
+					<option>Python</option>
 				</select>
 			</tr>
 			<tr>
@@ -29,43 +31,24 @@
 				<span>Select the language of the source file and the location of the file.</span>
 
 				<form action="../upload_file" enctype="multipart/form-data" method="post">
-					<!-- Source Code Language -->
 					<label>
-						<select>
-							<option>Java</option>
-							<option>JavaScript</option>
-						</select> Source Langauage</label>
-
+						<input name="email" required>
+						Email Address </label>
 					<br>
 					<input name="file" type="file" required >
 					<br>
 					<input type="submit" value="Submit">
 				</form>
 			</div>
-
-			<!-- File Uploader -->
-			<div id="createNew" style="display:none;">
-				<h3>Create New File</h3>
-				<span>Select the language of the source file.</span>
-
-				<form>
-					<!-- Source Code Language -->
-					<select>
-						<option>Java</option>
-						<option>JavaScript</option>
-					</select>
-
-					<input type="submit" value="Go" >
-				</form>
-			</div>
 		</table>
 
+		<script type="application/javascript" src="/static/javascript-framework/src/App.js" ></script>
+
 		<script type="application/javascript">
-			using('lib', 'javascript-framework/src/');
-			using('ai', 'scripts/');
+			using('lib', '/static/javascript-framework/src/');
+			using('ai', '/static/scripts/');
 
 			var UploadPanel = include('ai.upload.UploadPanel');
-			var CreatePanel = include('ai.upload.CreatePanel');
 
 			App.onready = function() {
 				App.setTitle('Web AI: Upload');
@@ -77,10 +60,11 @@
 					uploadPanel.show();
 				});
 
-				var createPanel = new CreatePanel();
 				var newButton = document.getElementById('newButton');
 				newButton.on('click', function() {
-					createPanel.show();
+					var game = document.getElementById('game').value;
+					var lang = document.getElementById('lang').value;
+					location = '/static/edit.html?game=' + game + '&lang=' + lang;
 				});
 			};
 		</script>
