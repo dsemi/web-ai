@@ -1,8 +1,9 @@
 #!/usr/bin/python2
 
-import game.Game
+from game import Game
 
 class TicTacToe(Game):
+    
     units = [
         (0,1,2),
         (3,4,5),
@@ -13,19 +14,19 @@ class TicTacToe(Game):
         (0,4,8),
         (2,4,6)
     ]
-
+    
     def __init__(self):
-        self.board = [[0 for i in range(3)] for j in range(3)]
+        self.board = [0 for i in range(9)]
 
-    def update(self, player, move):
+    def update(self, data):
         # should add other things like error-checking and maybe return statement
-        self.board[move] = player
+        self.board[data['player']] = data['move']
 
     def available_moves(self):
         return [i for i,v in enumerate(self.board) if v == 0]
-        
+ 
     def get_state(self):
-        pass
+        return self.board[:]
 
     def winner(self):
         for u in self.units:
