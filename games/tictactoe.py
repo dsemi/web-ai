@@ -20,7 +20,7 @@ class TicTacToe:
         # should add other things like error-checking and maybe return statement
         self.board[data['move']] = player
 
-    def available_moves(self):
+    def available_moves(self, player):
         return [i for i,v in enumerate(self.board) if v == 0]
  
     def get_state(self):
@@ -31,7 +31,7 @@ class TicTacToe:
             spaces = [self.board[i] for i in u]
             if spaces[0] and spaces.count(spaces[0]) == len(spaces):
                 return spaces[0]
-        if not self.available_moves():
+        if not self.available_moves(1):
             return 3 # Tie
         return 0 # Game not over
 

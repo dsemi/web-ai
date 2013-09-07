@@ -17,7 +17,7 @@ class Runner:
         # language file-to-run
 
         self.process1 = 'java -jar bridges/java/sauce.jar'
-        self.process2 = '../node bridges/javascript/bridge.js'
+        self.process2 = 'node bridges/javascript/bridge.js'
         self.processes = []
 
     def send_data(self, index, data):

@@ -16,7 +16,7 @@ class ConnectFour:
                 self.grid[i] = player
                 break
 
-    def available_moves(self):
+    def available_moves(self, player):
         return filter(lambda x: not all([self.grid[i] for i in self.cols[x]]), range(7))
 
     def get_state(self):
