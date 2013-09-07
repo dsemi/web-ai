@@ -2,14 +2,29 @@
 
 import os
 import json
-import subprocess
 import sys
+import shlex
+from subprocess import Popen, PIPE
 
 
-def main():
-    # parse args with sys.argv
-    pass
+class Runner:
+    
+    def __init__(self, process_string):
+        self.process_string = process_string
+    
+    def send_data(self, process, data):
+        pass
+    
+    def update(self):
+        pass
+
+    def run(self):
+        self.game_type = sys.argv[1]
+        self.process = Popen(shlex.split(self.process_string), stdin=PIPE, stdout=PIPE)
+        
+
 
 
 if __name__ == '__main__':
-    main()
+    runner = Runner("xxxxxx")
+    runner.run()
