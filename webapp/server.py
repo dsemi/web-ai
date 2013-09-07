@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def root():
-    return redirect(url_for('static', 'index.html'))
+    return redirect(url_for('static', filename='index.html'))
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
@@ -15,7 +15,7 @@ def parse_arguments():
                         nargs='?',
                         help="port number on which to listen",
                         type=int,
-                        default=80)
+                        default=5000)
     return parser.parse_args()
 
 if __name__ == '__main__':
