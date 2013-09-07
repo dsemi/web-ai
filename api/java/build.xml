@@ -1,0 +1,16 @@
+<project name="JavaAPI" default="compile" basedir=".">
+	 <!-- set global properties for this build -->
+	  <property name="src" location="."/>
+	  <property name="build" location="bin"/>
+	  <property name="dist"  location="dist"/>
+	  <property name="gson" location="gson.jar" />
+
+	<target name="compile" depends="clean" description="compile the source " >
+		<mkdir dir="${build}" />
+		<javac srcdir="${src}" destdir="${build}" classpath="${bin}:${gson}"/>
+	</target>
+	
+	<target name="clean" description="clean up" >
+		<delete dir="${build}"/>
+	</target>
+</project>
