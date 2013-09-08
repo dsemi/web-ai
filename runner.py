@@ -63,6 +63,7 @@ class Runner:
             else:
                 print "Player %d cannot move" % player_index+1
             print self.game.print_board()
+            output += self.game.print_board()
             print
             player_index = (player_index+1) % len(self.processes) 
 
@@ -71,6 +72,8 @@ class Runner:
             t.stdin.flush()
 
         print "The game is over, and %s" % ("Error","the winner is player 1","the winner is player 2","it was a tie")[self.game.winner()]
+        output += "The game is over, and %s" % ("Error","the winner is player 1","the winner is player 2","it was a tie")[self.game.winner()]
+
         
 
 
