@@ -5,7 +5,7 @@
 	var Ace = include('lib.ui.external.ace.AceEditor');
 
 	var Ajax = include('lib.utils.Ajax');
-	
+
 	var ED_THEME = 'ace/theme/terminal';
 
 	define('ai.editor.EditorPage', {
@@ -33,12 +33,12 @@
 			var ace = this.ace = new Ace(params.lang.toLowerCase(), function() {
 				var editor = ace.getEditor();
 				editor.setTheme(ED_THEME);
-				
+
 				if (srcCode) {
 					editor.setValue(decodeURIComponent(srcCode));
 				}
 			});
-			
+
 			ace.addClass('editor');
 
 			var submit = new Element('button', {
@@ -78,8 +78,12 @@
 					url : '/submit_code',
 					contentType : 'application/json',
 
-					onSucces : function() {
-						alert('Successfully uploaded the code!');
+					onSuccess : function() {
+						alert('Your\'e code has successfully been submitted!  ' 
+							+ 'We will email you when the simulation has finished ' 
+							+ 'with a link to the simulation.');
+							
+						location.href = '/';
 					},
 
 					onFail : function() {
