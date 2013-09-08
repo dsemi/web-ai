@@ -1,20 +1,45 @@
 #!/usr/bin/python2
 
-import os, sys, time
-import json, shlex
+import json, shlex, random
+from pymongo import MongoClient
 from games.tictactoe import TicTacToe
+from games.othello import Othello
 from subprocess import Popen, PIPE
 
+
+
 class Runner:
-
     def __init__(self):
-        if len(sys.argv) > 1:
-            args = json.loads(' '.join(sys.argv[1:]))
+        self.db = MongoClient('mongodb://localhost:27017/').ai_data
+        self.process_strings = []
+        self.emails = []
+        
+        count = 2
+        for person in self.db.posts.find({'game':'tic tac toe'}):
+            if not count:
+                break
+            if person['lang'] == 'java':
+                with open('bridges/java/src/com/ai/api/MyAI.java', 'w') as f:
+                    f.write(person['code'])
+                os.chdir('bridges/java')
+                p = Popen(shlex.split('mvn install'))
+                p.communicate()
+                os.chdir('../..')
+                self.process_strings.append('java -jar bridges/java/target/JavaAPI-0.0.1-SNAPSHOT-jar-with-dependencies.jar')
+                self.emails.append(person['email'])
+            elif person['lang'] == 'javascript':
+                with open('bridges/javascript/myAI.js', 'w') as f:
+                    f.write(person['code'])
+                self.process_strings.append('node bridges/javascript/bridge.js')
+                self.emails.append(person['email'])
+            else:
+                pass
+            count -= 1
 
+        while len(self.process_strings) < 2:
+            self.process_strings.append(('java -jar bridges/java/target/JavaAPI-0.0.1-SNAPSHOT-jar-with-dependencies.jar', 'node bridges/javascript/bridge.js')[random.randint(0,1)])
+            
         self.game = TicTacToe()
-
-        self.process1 = 'java -jar bridges/java/target/JavaAPI-0.0.1-SNAPSHOT-jar-with-dependencies.jar'
-        self.process2 = 'node bridges/javascript/bridge.js'
         self.processes = []
 
     def send_data(self, index, data):
@@ -25,9 +50,8 @@ class Runner:
         return json.loads(self.processes[index].stdout.readline())
 
     def run(self):
-        # if elses for which language and probably game is running
-        self.processes.append(Popen(shlex.split(self.process1), stdout=PIPE, stdin=PIPE))
-        self.processes.append(Popen(shlex.split(self.process2), stdout=PIPE, stdin=PIPE))
+        for process in self.process_strings:
+            self.processes.append(Popen(shlex.split(process), stdout=PIPE, stdin=PIPE))
     
         player_index = 0
         while not self.game.winner():
@@ -47,7 +71,7 @@ class Runner:
             t.stdin.flush()
 
         print "The game is over, and %s" % ("Error","the winner is player 1","the winner is player 2","it was a tie")[self.game.winner()]
-
+        
 
 
 if __name__ == '__main__':
