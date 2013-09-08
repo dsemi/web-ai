@@ -3,7 +3,7 @@
 
 	setInterval(function() {
 		createChar();
-	}, 400);
+	}, 50);
 
 	setInterval(function() {
 		updateChars(10);
