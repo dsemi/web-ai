@@ -46,11 +46,11 @@ public class MyAI {
         return valid.get((int) (Math.random() * valid.size()));
     }
 
-    private int getSmartMove(ArrayList<Double> board, int player) {
-        List<Double> newBoard = new ArrayList<Double>(board);
-        for (int i=0; i<newBoard.size(); i++) {
-            if (newBoard.get(i) == 2) {
-                newBoard.set(i, -1.0);
+    private int getSmartMove(ArrayList<Double> newBoard, int player) {
+        List<Double> board = new ArrayList<Double>(newBoard);
+        for (int i=0; i<board.size(); i++) {
+            if (board.get(i) == 2) {
+                board.set(i, -1.0);
             }
         }
         
@@ -108,27 +108,27 @@ public class MyAI {
     }
 
     private int negamax(List<Double> board, int alpha, int beta, int player) {
-        depth++;
-        System.err.println(depth);
+        // depth++;
+        // System.err.println(depth);
         int winner = getWinner(board);
         if (winner != 0) {
             if (winner == 1 || winner == -1) {
-                depth--;
+                // depth--;
                 return player*winner;
             }
             else {
-                depth--;
+                // depth--;
                 return 0;
             }
         }
         for (List<Double> child : childNodes(board, player)) {
             alpha = Math.max(alpha, -negamax(child, -beta, -alpha, -player));
             if (alpha >= beta) {
-                depth--;
+                // depth--;
                 return alpha;
             }
         }
-        depth--;
+        // depth--;
         return alpha;
 
     }
