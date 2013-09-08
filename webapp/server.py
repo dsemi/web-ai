@@ -1,6 +1,6 @@
 #!/usr/bin/python2
 
-import argparse
+import argparse, json
 from pymongo import MongoClient
 from urllib import quote, unquote
 from flask import Flask, redirect, url_for, request
@@ -36,7 +36,7 @@ def subcode():
 @app.route('/replay/<id>', methods=['GET','POST'])
 def get_data(id):
     db = MongoClient('mongodb://localhost:27017/').ai_data
-    return db.posts.find_one({'id':id})
+    return json.dumps({'states':db.posts.find_one({'id':id}).get('states')})
 
 
 def parse_arguments():

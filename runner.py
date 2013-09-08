@@ -32,7 +32,7 @@ class Runner:
             elif person['lang'] == 'javascript':
                 with open('bridges/javascript/myAI.js', 'w') as f:
                     f.write(person['code'])
-                self.process_strings.append('../node bridges/javascript/bridge.js')
+                self.process_strings.append('node bridges/javascript/bridge.js')
                 self.emails.append(person['email'])
             else:
                 pass
@@ -76,7 +76,7 @@ class Runner:
 
         print "The game is over, and %s" % ("Error","the winner is player 1","the winner is player 2","it was a tie")[self.game.winner()]
         ident = uuid.uuid4()
-        self.db.posts.insert({'id':ident, 'states':output, 'type':'tic tac toe'})
+        self.db.posts.insert({'id':str(ident), 'states':output, 'type':'tic tac toe'})
 
         if self.emails:
             s = sendgrid.Sendgrid('semi225599', os.environ['SENDGRID_PW'], secure=True)
