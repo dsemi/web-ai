@@ -35,6 +35,10 @@ class TicTacToe:
             return 3 # Tie
         return 0 # Game not over
 
+
+    def print_brd(self):
+        return self.board[:]
+        
     # Just for us to see output
     def print_board(self):
         brd = self.board[:]

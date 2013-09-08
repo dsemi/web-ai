@@ -1,6 +1,8 @@
 #!/usr/bin/python2
 
+import uuid
 import json, shlex, random
+import sendgrid, os
 from pymongo import MongoClient
 from games.tictactoe import TicTacToe
 from games.othello import Othello
@@ -54,6 +56,7 @@ class Runner:
             self.processes.append(Popen(shlex.split(process), stdout=PIPE, stdin=PIPE))
     
         player_index = 0
+        output = ''
         while not self.game.winner():
             if self.game.available_moves(player_index+1):
                 d = self.game.get_state()
@@ -63,7 +66,8 @@ class Runner:
             else:
                 print "Player %d cannot move" % player_index+1
             print self.game.print_board()
-            output += self.game.print_board()
+            output += self.game.print_brd()
+            output += '\n\n'
             print
             player_index = (player_index+1) % len(self.processes) 
 
@@ -72,9 +76,16 @@ class Runner:
             t.stdin.flush()
 
         print "The game is over, and %s" % ("Error","the winner is player 1","the winner is player 2","it was a tie")[self.game.winner()]
-        output += "The game is over, and %s" % ("Error","the winner is player 1","the winner is player 2","it was a tie")[self.game.winner()]
+        ident = uuid.uuid4()
+        self.db.posts.insert({'id':ident, 'states':output})
 
-        
+        if self.emails:
+            s = sendgrid.Sendgrid('semi225599', os.environ['SENDGRID_PW'], secure=True)
+            message = sendgrid.Message("ai@osai.com", "AI Results", "Your AI code has finished running:<br>", 'http://127.0.0.1:5000/static/replay.html?id='+ident)
+            for email in self.emails:
+                message.add_to(email)
+
+            s.smtp.send(message)
 
 
 if __name__ == '__main__':
