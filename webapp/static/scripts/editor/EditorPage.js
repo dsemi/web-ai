@@ -73,7 +73,7 @@
 				
 				var ajax = new Ajax({
 					method : 'POST',
-					url : '/submit_code/',
+					url : '/submit_code',
 					contentType : 'application/json',
 					
 					onSucces : function() {
