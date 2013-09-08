@@ -13,7 +13,7 @@ class Runner:
 
         self.game = TicTacToe()
 
-        self.process1 = 'java -jar bridges/java/sauce.jar'
+        self.process1 = 'java -jar bridges/java/target/JavaAPI-0.0.1-SNAPSHOT-jar-with-dependencies.jar'
         self.process2 = 'node bridges/javascript/bridge.js'
         self.processes = []
 
