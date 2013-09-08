@@ -1,0 +1,12 @@
+@import '/static/styles/common.css';
+
+.contents h1,h2, .white {
+	color: white;
+}
+
+.editor {
+	position : absolute;
+	left : 30%;
+}
+
+
