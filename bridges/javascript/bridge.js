@@ -5,6 +5,8 @@ var stdin = process.stdin;
 
 var child, childRunning, childFinished;
 
+var storage = {};
+
 var readline = require('readline');
 
 var rl = readline.createInterface({
@@ -31,11 +33,6 @@ rl.on('line', function(line) {
 	else {
 		data = JSON.parse(line);
 		
-		child.on('message', function(data) {
-			stdout.write(JSON.stringify(data) + '\n');
-			childFinished = true;
-		});
-		
 		childRunning = true;
 		childFinished = false;
 		
@@ -45,6 +42,20 @@ rl.on('line', function(line) {
 
 function createChild() {
 	child = cp.fork(__dirname + '/myAI.js');
+	child.on('message', function(data) {
+	
+		// Saves data between runs
+		var store = data.storage;
+		if (store) {
+			for (var key in store) {
+				storage[key] = store[key];
+			}
+		}
+	
+		stdout.write(JSON.stringify(data.turn) + '\n');
+		childFinished = true;
+	});
+		
 	childRunning = false;
 	childFinished = true;
 }
