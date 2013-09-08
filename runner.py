@@ -66,7 +66,7 @@ class Runner:
             else:
                 print "Player %d cannot move" % player_index+1
             print self.game.print_board()
-            output += self.game.print_brd()
+            output += str(self.game.print_brd())
             output += '\n\n'
             print
             player_index = (player_index+1) % len(self.processes) 
@@ -81,7 +81,7 @@ class Runner:
 
         if self.emails:
             s = sendgrid.Sendgrid('semi225599', os.environ['SENDGRID_PW'], secure=True)
-            message = sendgrid.Message("ai@osai.com", "AI Results", "Your AI code has finished running:<br>", 'http://127.0.0.1:5000/static/replay.html?id='+ident)
+            message = sendgrid.Message("ai@osai.com", "AI Results", "Your AI code has finished running:<br>", 'http://127.0.0.1:5000/static/replay.html?id='+str(ident))
             for email in self.emails:
                 message.add_to(email)
 
