@@ -85,7 +85,7 @@
 					}
 				});
 				
-				ajax.send(data);
+				ajax.send(JSON.stringify(data));
 			}
 		}
 	});
