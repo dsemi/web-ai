@@ -36,15 +36,17 @@
 }
 
 .modal_panel {
+	z-index: 999;
 }
 
 .overlay {
 	position: fixed;
 	top: 0;
 	left: 0;
-	background: rgba(0,0,0,0.75);
+	background: rgba(255,255,255,0.25);
 	width: 100%;
 	height: 100%;
+	z-index: 999;
 }
 
 .dataList {

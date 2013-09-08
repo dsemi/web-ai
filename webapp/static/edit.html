@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 
 <html>
+	<head>
+		<link rel="stylesheet" href="/static/styles/edit.css" >
+	</head>
+	
 	<body>
+		<!-- Banner -->
+		<div class="chrome banner">
+			<a href="/"><h1>OSAI</h1></a>
+		</div>
+		
+		<div id="contents" class="contents"></div>
+		
 		<script type="application/javascript" src="/static/javascript-framework/src/App.js" ></script>
 
 		<script type="application/javascript">
@@ -14,7 +25,7 @@
 				App.setTitle('Web AI: Editor');
 
 				var page = new EditorPage();
-				App.setContainer(page);
+				document.getElementById('contents').appendChild(page.element);
 			};
 		</script>
 	</body>

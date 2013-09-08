@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Web AI: Welcome</title>
+		<link rel="stylesheet" href="/static/styles/common.css" >
+		<link rel="stylesheet" href="/static/scripts/viewer/ttt/styles.css" >
+	</head>
+
+	<body>
+		<!-- Banner -->
+		<div class="chrome banner">
+			<a href="/"><h1>OSAI</h1></a>
+		</div>
+
+		<div class="contents">
+			<div id="replay_screen"></div>
+
+			<div>
+				<button id="step">
+					Step
+				</button>
+				<button id="play">
+					Play
+				</button>
+				<button id="skip">
+					Skip
+				</button>
+			</div>
+		</div>
+
+		<script type="application/javascript" src="/static/javascript-framework/src/App.js"></script>
+		<script type="application/javascript">
+			using('lib', '/static/javascript-framework/src/');
+			using('ai', '/static/scripts/');
+
+			var Ajax = include('lib.utils.Ajax');
+			var TTT = include('ai.viewer.TTT');
+
+			App.onready = function() {
+				App.setTitle('Web AI: Replay');
+				var id = App.getParams().id;
+				var game;
+
+				var ajax = new Ajax({
+					method : 'GET',
+					acceptType : 'application/JSON',
+					url : '/replay/' + id,
+
+					onSuccess : function(data) {
+						data = JSON.parse(data);
+						
+						if (data.gameType === 'tic tac toe') {
+							game = new TTT(data);
+						}
+					}
+				});
+				
+				game = new TTT();
+
+				ajax.send();
+				
+				// Button listeners
+				document.getElementById('step').on('click', function() {
+					game.step();
+				});
+			};
+		</script>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+@import '/static/styles/common.css';
+
+.entryBlock {
+	color: white;
+	display: inline-block;
+	font-size: 32pt;
+	margin: 0 70px;
+	padding-top: 40px;
+	height: 100px;
+	width: 200px;
+}
+
+.contents {
+	text-align: center;
+	left: 0;
+	right: 0;
+	position: absolute;
+	top: 200px;
+	z-index: 2;
+}
+
+.matrix_char {
+	color: #36FA14;
+	font-family: Aldrich;
+	font-size: 12pt;
+	position: absolute;
+}

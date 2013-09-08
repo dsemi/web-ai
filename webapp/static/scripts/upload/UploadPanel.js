@@ -10,7 +10,8 @@
 			
 			var self = this;
 			var closeButton = new Element('button', {
-				innerHTML : 'Close',
+				innerHTML : 'X',
+				className : 'close',
 				onclick : function() {
 					self.hide();
 				}
@@ -19,8 +20,8 @@
 			var uploadForm = this.uploadForm = document.getElementById('fileUploader');
 			this.hide();
 			
-			this.element.appendChild(uploadForm);
 			this.add(closeButton);
+			this.element.appendChild(uploadForm);
 			
 			this.moveToCenter();
 		},

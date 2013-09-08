@@ -1,0 +1,21 @@
+@import '/static/styles/common.css';
+
+#email_label {
+	color: white;
+	font-size: 16pt;
+}
+
+#email_label > input {
+	border-radius: 5px;
+	height: 2em;
+}
+
+.contents h1, h2, .white {
+	color: white;
+}
+
+.editor {
+	position: absolute;
+	left: 30%;
+}
+

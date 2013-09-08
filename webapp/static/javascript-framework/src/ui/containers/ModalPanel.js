@@ -13,7 +13,7 @@
             this.setDraggable(false);
             
             this.overlay = new Element('div', {
-               className : 'overlay' 
+               className : 'overlay',
             });
             
             // Adds self to the body of the document			

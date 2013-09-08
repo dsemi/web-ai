@@ -1,0 +1,31 @@
+.BoardSquare {
+	background-color: white;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	border: solid black 2px;
+	height: 100px;
+	min-height: 100px;
+	margin: 0;
+	padding: 0;
+	width: 100px;
+}
+
+.StatusBox {
+	width: 300px;
+}
+
+.StatusBox div {
+	background-color: white;
+}
+
+.StatusBox > h2 {
+	color: white;
+}
+
+.StatusBox > div {
+	border: solid black 1px;
+	font-family:Courier;
+	height: 6em;
+	overflow-y: scroll;
+	text-align: left;
+}
