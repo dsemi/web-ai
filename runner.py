@@ -62,7 +62,7 @@ class Runner:
                 self.game.update(self.get_data(player_index), player_index+1)
             else:
                 print "Player %d cannot move" % player_index+1
-            self.game.print_board()
+            print self.game.print_board()
             print
             player_index = (player_index+1) % len(self.processes) 
 
