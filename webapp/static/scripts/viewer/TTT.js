@@ -15,7 +15,7 @@
 		step : function() {
 			var states = this.replayData.states;
 
-			if (this.curStep < moves.length) {
+			if (this.curStep < states.length) {
 				// Read the move and draw to the screen
 				this.game.update(this.currentPlayer, states[this.curStep++]);
 				this.switchTurns();
