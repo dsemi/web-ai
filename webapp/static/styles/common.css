@@ -22,7 +22,7 @@ body {
 .banner {
 	height: 50px;
 	left: 0;
-	padding: 10px 0 0 30px;
+	padding: 10px 0 0 100px;
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -43,6 +43,8 @@ body {
 	color: white;
 	cursor: pointer;
 	font-family: Aldrich;
+	font-size: 11pt;
+	padding: 5px 20px;
 }
 
 .banner a {

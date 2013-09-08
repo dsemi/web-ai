@@ -10,52 +10,61 @@
 			<a href="/"><h1>OSAI</h1></a>
 		</div>
 
-	<div class="contents">
-		<table>
-			<thead>
+		<div id="contents" class="contents">
+			<h1>Design an AI</h1>
+
+			<table id="main_table">
+				<colgroup>
+					<col style="width: 50%;" />
+					<col style="width: 50%;" />
+				</colgroup>
+
+				<thead>
+					<tr>
+						<th><h2>Game</h2></th>
+						<th><h2>Language</h2></th>
+					</tr>
+				</thead>
 				<tr>
-					<th> Game</th>
-					<th>Language</th>
+					<td>
+					<select id="game">
+						<option>Othello</option>
+						<option>Tic Tac Toe</option>
+						<option>Asteroids</option>
+					</select></td><td>
+					<select id="lang">
+						<option>JavaScript</option>
+						<option>Java</option>
+						<option>Python</option>
+					</select></td>
 				</tr>
-			</thead>
-			<tr>
-				<td>
-				<select id="game">
-					<option>Othello</option>
-					<option>Tic Tac Toe</option>
-					<option>Asteroids</option>
-				</select>
-				<select id="lang">
-					<option>JavaScript</option>
-					<option>Java</option>
-					<option>Python</option>
-				</select></td>
-			</tr>
-			<tr>
-				<td>
+			</table>
+
+			<div id="button_panel">
 				<button id="uploadButton" class="button">
 					Upload
-				</button></td>
-				<td>
+				</button>
 				<button id="newButton" class="button">
 					New
-				</button></td>
-			</tr>
+				</button>
+			</div>
 
 			<!-- File Uploader -->
 			<div id="fileUploader" style="display:none;">
 				<h3>Source Code Uploader</h3>
-				<span>Select the language of the source file and the location of the file.</span>
+				<div>
+					Select the language of the source file and the location of the file.
+				</div>
+				<br>
 
 				<form action="../upload_file" enctype="multipart/form-data" method="post" target="submit_frame">
 					<input name="file" type="file" required >
 					<br>
-					<input type="submit" value="Upload">
+					<input type="submit" value="Upload" >
 				</form>
 
 				<iframe id="submit_frame" name="submit_frame" style="display:none;"></iframe>
 			</div>
-		</table>
 		</div>
 
 		<script type="application/javascript" src="/static/javascript-framework/src/App.js" ></script>

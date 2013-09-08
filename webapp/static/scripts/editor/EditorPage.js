@@ -24,7 +24,7 @@
 			var self = this;
 			var email = this.email = new Element('form', {
 				action : 'javascript:void(0);',
-				innerHTML : '<label class="white">Email: <input type="email" name="email"></label>',
+				innerHTML : '<label id="email_label">Email: <input type="email" name="email"></label>',
 				onsubmit : function() {
 					self.submit();
 				}
