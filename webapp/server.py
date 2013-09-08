@@ -33,6 +33,11 @@ def subcode():
     db.posts.insert(data)
     return 'submitted'
     
+@app.route('/replay/<id>', methods=['GET','POST'])
+def get_data(id):
+    db = MongoClient('mongodb://localhost:27017/').ai_data
+    return db.posts.find_one({'id':id})
+
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
