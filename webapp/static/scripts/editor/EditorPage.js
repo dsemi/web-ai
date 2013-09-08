@@ -17,7 +17,7 @@
 			var srcCode = sessionStorage.getItem('src_code');
 
 			var gameTitle = new Element('h1', {
-				innerHTML : params.game + ' AI'
+				innerHTML : decodeURIComponent(params.game) + ' AI'
 			});
 
 			var header = new Element('h2', {
