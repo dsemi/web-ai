@@ -32,7 +32,6 @@ def subcode():
         data[k] = unquote(data[k])
     db.posts.insert(data)
     return 'submitted'
-    # Run the code
     
 
 def parse_arguments():
