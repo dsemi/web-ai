@@ -35,12 +35,15 @@ class TicTacToe:
             return 3 # Tie
         return 0 # Game not over
 
+
+    def print_brd(self):
+        return self.board[:]
+        
     # Just for us to see output
     def print_board(self):
         brd = self.board[:]
-        print ('   \033[4m')+' '.join("123")+'\033[0m'
+        output = []
+        output.append(('   \033[4m')+' '.join("123")+'\033[0m\n')
         for i in range(3):
-            print '%d|' % (i+1),
-            for j in range(3):
-                print (' ','X','0')[brd[3*i+j]],
-            print
+            output = output + ['%d|' % (i+1)] + [('  ',' X',' 0')[brd[3*i+j]] for j in range(3)]+['\n']
+        return ''.join(output)

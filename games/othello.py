@@ -104,10 +104,9 @@ class Othello:
 
     def print_board(self):
         board = self.brd.copy()
-        print ('   \033[4m')+' '.join(cols)+'\033[0m'
+        output = []
+        output.append(('   \033[4m')+' '.join(cols)+'\033[0m\n')
         for r in rows:
-            print '%s|' % r,
-            for c in cols:
-                print (' ','B','W')[board[r+c]],
-            print
+            output = output + ['%s|' % r] + [('  ',' B',' W')[board[r+c]] for c in cols] + ['\n']
+        return ''.join(output)
 

@@ -38,9 +38,8 @@ class ConnectFour:
         
     def print_board(self):
         brd = self.grid[:]
-        print ('   \033[4m')+' '.join("0123456")+'\033[0m'
+        output = []
+        output.append(('   \033[4m')+' '.join("0123456")+'\033[0m\n')
         for i in range(6):
-            print '%d|' % i,
-            for j in range(7):
-                print (' ','X','0')[brd[7*i+j]],
-            print
+            output = output + ['%d|' % i] + [('  ',' X',' 0')[brd[7*i+j]] for j in range(7)] + ['\n']
+        return ''.join(output)
