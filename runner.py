@@ -14,7 +14,7 @@ class Runner:
         self.game = TicTacToe()
 
         self.process1 = 'java -jar bridges/java/sauce.jar'
-        self.process2 = 'java -jar bridges/java/sauce.jar'
+        self.process2 = 'node bridges/javascript/bridge.js'
         self.processes = []
 
     def send_data(self, index, data):
@@ -32,7 +32,9 @@ class Runner:
         player_index = 0
         while not self.game.winner():
             if self.game.available_moves(player_index+1):
-                self.send_data(player_index, self.game.get_state())
+                d = self.game.get_state()
+                d['player'] = player_index+1
+                self.send_data(player_index, d)
                 self.game.update(self.get_data(player_index), player_index+1)
             else:
                 print "Player %d cannot move" % player_index+1
