@@ -32,7 +32,7 @@ class Runner:
             elif person['lang'] == 'javascript':
                 with open('bridges/javascript/myAI.js', 'w') as f:
                     f.write(person['code'])
-                self.process_strings.append('node bridges/javascript/bridge.js')
+                self.process_strings.append('../node bridges/javascript/bridge.js')
                 self.emails.append(person['email'])
             else:
                 pass

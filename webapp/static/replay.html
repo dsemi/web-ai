@@ -49,17 +49,15 @@
 
 					onSuccess : function(data) {
 						data = JSON.parse(data);
-						
-						if (data.gameType === 'tic tac toe') {
-							game = new TTT(data);
-						}
+
+						game = new TTT(data);
 					}
 				});
-				
+
 				game = new TTT();
 
 				ajax.send();
-				
+
 				// Button listeners
 				document.getElementById('step').on('click', function() {
 					game.step();
