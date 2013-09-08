@@ -19,7 +19,7 @@
 			manager.load(2, 'image', '/static/images/O.bmp');
 		},
 
-		updateMove : function(id, updatedBoard) {
+		update : function(id, updatedBoard) {
 			var self = this;
 			var board = this.board;
 
