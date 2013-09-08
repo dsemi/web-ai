@@ -23,9 +23,6 @@
 				<button id="play">
 					Play
 				</button>
-				<button id="skip">
-					Skip
-				</button>
 			</div>
 		</div>
 
@@ -59,6 +56,10 @@
 				// Button listeners
 				document.getElementById('step').on('click', function() {
 					game.step();
+				});
+				
+				document.getElementById('play').on('click', function() {
+					game.play();
 				});
 			};
 		</script>

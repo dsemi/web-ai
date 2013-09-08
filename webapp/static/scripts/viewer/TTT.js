@@ -16,10 +16,20 @@
 			var states = this.replayData.states;
 
 			if (this.curStep < states.length) {
-				// Read the move and draw to the screen
 				this.game.update(this.currentPlayer, states[this.curStep++]);
-				this.switchTurns();
+				return true;
 			}
+			
+			return false;
+		},
+		
+		play : function() {
+			var self = this;
+			setTimeout(function() {
+				if (self.step()) {
+					self.play();
+				}
+			}, 500);
 		}
 	});
 
