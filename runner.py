@@ -8,16 +8,13 @@ from subprocess import Popen, PIPE
 class Runner:
 
     def __init__(self):
-        self.game = TicTacToe()
-        # Should be json
         if len(sys.argv) > 1:
             args = json.loads(' '.join(sys.argv[1:]))
-        # Command line params
-        # game
-        # language file-to-run
+
+        self.game = TicTacToe()
 
         self.process1 = 'java -jar bridges/java/sauce.jar'
-        self.process2 = 'node bridges/javascript/bridge.js'
+        self.process2 = 'java -jar bridges/java/sauce.jar'
         self.processes = []
 
     def send_data(self, index, data):
@@ -47,7 +44,7 @@ class Runner:
             t.stdin.write('exit\n')
             t.stdin.flush()
 
-        print "There's a winner: " + str(self.game.winner())
+        print "The game is over, and %s" % ("Error","the winner is player 1","the winner is player 2","it was a tie")[self.game.winner()]
 
 
 

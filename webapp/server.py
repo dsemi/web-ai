@@ -1,7 +1,8 @@
 #!/usr/bin/python2
 
 import argparse
-from urllib import quote
+from pymongo import MongoClient
+from urllib import quote, unquote
 from flask import Flask, redirect, url_for, request
 from werkzeug import secure_filename
 
@@ -18,18 +19,20 @@ def upl_file():
         f = request.files['file']
         return quote(''.join([line for line in f]))
     else:
-        with open('static/upload.html') as fi:
-            contents = fi.read()
+        with open('static/upload.html') as f:
+            contents = f.read()
         return contents
 
-    
+
 @app.route('/submit_code', methods=['POST'])
 def subcode():
-    code  = request.form.get('code')
-    email = request.form.get('email')
-    game  = request.form.get('game')
-    lang  = request.form.get('lang')
-    # Run the code 
+    global db
+    data = request.get_json()
+    for k in data:
+        data[k] = unquote(data[k])
+    db.posts.insert(data)
+    return 'submitted'
+    
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
@@ -42,6 +45,8 @@ def parse_arguments():
 
 
 if __name__ == '__main__':
+    global db
+    db = MongoClient('mongodb://localhost:27017/').ai_data
     args = parse_arguments()
     app.debug = True
     app.run(host="0.0.0.0", port=args.port)
